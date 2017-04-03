@@ -52,7 +52,7 @@
       //
       // L.control.layers("",overlayMaps).addTo(map);
 
-      var popupTemplate = "<h3>{Street_Name}</h3>";
+      var popupTemplate = "<h3>Street Name: {Street_Name}</h3>";
 
       future_projects.bindPopup(function(e){
         return L.Util.template(popupTemplate, e.feature.properties);
