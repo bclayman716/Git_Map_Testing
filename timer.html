@@ -8,67 +8,74 @@
     <link rel="stylesheet" href="http://unicorn-ui.com/css/builder.css">
   </head>
 
-  <h1><time>00:00:00</time></h1>
+  <!-- <h1><time>00:00:00</time></h1> -->
+  <h1><time>Get Ready</time></h1>
+  <button id="start" class="button button-rounded button-primary">Start</button>
+  <button id="stop" class="button button-rounded button-action">Stop</button>
+  <button id="reset" class="button button-rounded">Reset</button>
   <body>
     <script>
+
+
       var h1 = document.getElementsByTagName('h1')[0],
+      // down = document.getElementsByTagName('h1')[0],
       start = document.getElementById('start'),
       stop = document.getElementById('stop'),
       clear = document.getElementById('reset'),
+      dseconds = 4,
       seconds = 0, minutes = 0, hours = 0,
-      t;
+      t,
+      d;
 
-      function add() {
-          seconds++;
-          if (seconds >= 60) {
-              seconds = 0;
-              minutes++;
-              if (minutes >= 60) {
-                  minutes = 0;
-                  hours++;
-              }
-          }
-
-          h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-
-          timer();
+      function sub(){
+        dseconds--;
+        if (dseconds >= 0){
+          h1.textContent = (dseconds);
+          decrease();
+        }
+        else{
+          add();
+        }
       }
-      function timer() {
-          t = setTimeout(add, 1000);
+
+      function decrease(){
+        d = setTimeout(sub, 1000);
       }
-      timer();
+      // decrease();
 
+      start.onclick = decrease;
 
-      /* Start button */
-      start.onclick = timer;
+      // stopwatch
+      function add(){
+         seconds++;
+         if (seconds >= 60){
+           seconds = 0;
+           minutes++;
+           if (minutes>=60){
+             minutes = 0;
+             hours++
+           }
+         }
+         h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+        timer();
+      }
 
-      /* Stop button */
+      function timer(){
+        t = setTimeout(add,1000);
+      }
+      // timer(); // auto start
+
       stop.onclick = function() {
-          clearTimeout(t);
+        clearTimeout(t);
       }
 
-      /* Clear button */
+
       clear.onclick = function() {
-          h1.textContent = "00:00:00";
-          seconds = 0; minutes = 0; hours = 0;
+        h1.textContent = "00:00:00";
+        seconds = 0; minutes = 0; hours = 0;
       }
+
 
     </script>
-
-    <!-- create 3 stopwatches -->
-    <!-- <div class="stopwatch"></div>
-    <div class="stopwatch"></div>
-    <div class="stopwatch"></div> -->
-
-    <button id="start" class="button button-rounded button-primary">Start</button>
-    <button id="stop" class="button button-rounded button-action">Stop</button>
-    <button id="reset" class="button button-rounded">Reset</button>
-
-    <!-- <section class = "showcase-examples">
-      <a href = "#" class="button button-rounded button-primary" button id = "start">Start Timer</a>
-      <a href = "#" class="button button-rounded button-action" button id = "stop">Stop Timer</a>
-      <a href = "#" class="button button-rounded" button id = "reset">Reset</a>
-    </section> -->
-
   </body>
 </html>
