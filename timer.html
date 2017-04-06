@@ -11,27 +11,27 @@
 
   </head>
 
-  <!-- <h1><time>00:00:00</time></h1> -->
-  <form>
+  <h1><form>
     Second:<br>
-    <input type="text" name="sec"><br>
+    <input type="number" name="sec" id= "sec"><br>
     Minute:<br>
-    <input type="text" name="min">
-  </form>
-  <h1><time>Get Ready</time></h1>
+    <input type="number" name="min" id= "min">
+  </form></h1>
+
   <button id="start" class="button button-rounded button-primary">Start</button>
   <button id="stop" class="button button-rounded button-action">Stop</button>
   <button id="reset" class="button button-rounded">Reset</button>
+
   <body>
     <script>
       var h1 = document.getElementsByTagName('h1')[0],
       start = document.getElementById('start'),
       stop = document.getElementById('stop'),
       clear = document.getElementById('reset'),
-      seconds = document.getElementsByName('sec'),
-      minutes = document.getElementsByName('min'),
+      // seconds = document.getElementById('sec'),
+      // minutes = document.getElementById('min'),
       dseconds = 4,
-      // seconds = 0, minutes = 0 , hours = 0,
+      seconds = 3, minutes = 1 , hours = 0,
       hours = 0,
       t,
       d;
@@ -63,18 +63,9 @@
           minutes = minutes-1;
           if (minutes <= -1){
             minutes = 59;
-            hours = hours-1
+            hours = hours-1;
+            }
           }
-        }
-        //  seconds--;
-        //  if (seconds <= 0){
-        //    seconds = 0;
-        //    minutes--;
-        //    if (minutes<= 0){
-        //      minutes = 0;
-        //      hours--
-        //    }
-        //  }
          h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
         timer();
       }
